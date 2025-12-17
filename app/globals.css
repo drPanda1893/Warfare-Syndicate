@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Standard Farben für den Hintergrund, falls Bilder nicht laden */
+  --background-rgb: 2, 6, 23; /* Slate-950 (sehr dunkles Blau/Schwarz) */
+  --foreground-rgb: 226, 232, 240; /* Slate-200 (Helles Grau für Text) */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  /* WICHTIG: Verhindert, dass das Browser-Fenster selbst scrollt. 
+     Wir wollen, dass nur die inneren Bereiche scrollen (Game-Menu Feeling). */
+  overflow: hidden; 
+}
+
+/* --- CUSTOM SCROLLBAR DESIGN --- */
+/* Das macht die Scrollbalken dünn und modern (funktioniert in Chrome, Edge, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); /* Hintergrund der Leiste */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1); /* Der Balken selbst */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.8); /* Amber-600 Farbe beim Drüberfahren */
+}
+
+/* --- ANIMATION HELPER --- */
+/* Falls du das Plugin 'tailwindcss-animate' nicht installiert hast, 
+   helfen diese Klassen, damit die Einflugeffekte trotzdem funktionieren. */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Utility Klassen, die wir im React Code nutzen */
+.animate-in {
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.slide-in-from-right {
+  animation-name: slideInRight;
+}
+
+.zoom-in {
+  animation-name: zoomIn;
+}
